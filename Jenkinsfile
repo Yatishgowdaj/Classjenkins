@@ -1,37 +1,25 @@
 pipeline {
     agent any
-
-    stages {
-
-        stage('Build') {
-            steps {
-                echo 'Building application...'
+    stages{
+        stage("Build"){
+            steps{
+                echo "Building the project..."
             }
         }
-
-        stage('Parallel Tests') {
+        stage("Parallel Test"){
             parallel {
-
-                stage('Unit Test') {
-                    steps {
-                        echo 'Running unit tests...'
-                        sh 'sleep 10'
+                stage("Unit Test"){
+                    steps{
+                        echo "Running Unit Tests..."
                     }
                 }
-
-                stage('Security Scan') {
-                    steps {
-                        echo 'Running security scan...'
-                        sh 'sleep 10'
+                stage("Integration Test"){
+                    steps{
+                        echo "Running Integration Tests..."
                     }
                 }
             }
         }
 
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application...'
-            }
-        }
     }
 }
